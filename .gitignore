@@ -485,3 +485,4 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/latex,python
 
 .DS_STORE
+data/
