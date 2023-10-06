@@ -1,10 +1,11 @@
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
 
 # aggregate log event-level representation to seqence-level
 
-
-evt_level_rep = np.load('data/BGL_2k/BGL_2k.log_structured.csv', allow_pickle=True)
+structured_logs = pd.read_csv('../../data/BGL_2k/BGL_2k.log_structured.csv')
+evt_level_rep = pd.DataFrame.to_numpy(structured_logs)
 
 x_train = evt_level_rep["x_train"][()]
 y_train = evt_level_rep["y_train"]
