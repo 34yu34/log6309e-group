@@ -486,3 +486,5 @@ pyrightconfig.json
 
 .DS_STORE
 data/
+/articlepackage/
+.idea/
