@@ -13,7 +13,7 @@ warnings.simplefilter(action='ignore', category=pd.errors.PerformanceWarning)
 
 
 struct_log = 'data/HDFS_v1/HDFS.log_structured.csv' # The structured log file
-label_file = 'data/HDFS_v1/anomaly_label.csv' # The anomaly label file
+label_file = 'data/HDFS_v1/preprocessed/anomaly_label.csv' # The anomaly label file
 
 if __name__ == '__main__':
     (x_train, y_train), (x_test, y_test) = HDFS.loadDataset(struct_log,
