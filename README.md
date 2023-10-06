@@ -16,5 +16,4 @@ cd log6309 && git clone git@github.com:34yu34/log6309e-group.git
 conda create -n logpai python=3.8
 conda activate logpai
 pip install logparser3 torch tqdm numpy scikit-learn pandas
-git clone git@github.com:mooselab/suppmaterial-LogRepForAnomalyDetection.git articlepackage
 ```
