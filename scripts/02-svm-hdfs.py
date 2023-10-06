@@ -2,13 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import pandas as pd
 sys.path.append('../loglizer/')
 from loglizer.models import SVM
 from loglizer import preprocessing
 from loglizer.dataloader import HDFS
+import warnings
 
-struct_log = 'data/HDFS_2k/HDFS_2k.log_structured.csv' # The structured log file
-label_file = 'data/HDFS_2k/anomaly_label.csv' # The anomaly label file
+warnings.simplefilter(action='ignore', category=pd.errors.PerformanceWarning)
+
+
+struct_log = 'data/HDFS_v1/HDFS.log_structured.csv' # The structured log file
+label_file = 'data/HDFS_v1/anomaly_label.csv' # The anomaly label file
 
 if __name__ == '__main__':
     (x_train, y_train), (x_test, y_test) = HDFS.loadDataset(struct_log,

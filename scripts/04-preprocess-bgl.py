@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+import os
 import sys
 sys.path.append('../deep-loglizer/')
-import os
-import re
 import pickle
 import argparse
 import pandas as pd
@@ -12,69 +8,68 @@ import numpy as np
 from data_preprocess.utils import decision, json_pretty_dump
 from collections import OrderedDict, defaultdict
 
-
-seed = 42
-np.random.seed(seed)
-
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--train_anomaly_ratio", default=1.0, type=float)
 
 params = vars(parser.parse_args())
 
-data_name = f'hdfs_{params["train_anomaly_ratio"]}_tar'
-data_dir = "data/HDFS_v1/"
+eval_name = f'bgl_{params["train_anomaly_ratio"]}_tar'
+seed = 42
+data_dir = "data/BGL"
+np.random.seed(seed)
 
 params = {
-    "log_file": "data/HDFS_v1/HDFS.log_structured.csv",
-    "label_file": "data/HDFS_v1/anomaly_label.csv",
+    "log_file": "data/BGL/BGL.log_structured.csv",
+    "time_range": 21600,  # 6 hours
+    "train_ratio": None,
     "test_ratio": 0.2,
-    "random_sessions": True,  # shuffle sessions
+    "random_sessions": True,
     "train_anomaly_ratio": params["train_anomaly_ratio"],
 }
 
-data_dir = os.path.join(data_dir, data_name)
+data_dir = os.path.join(data_dir, eval_name)
 os.makedirs(data_dir, exist_ok=True)
 
-def preprocess_hdfs(
+
+def load_BGL(
     log_file,
-    label_file,
-    test_ratio=None,
-    train_anomaly_ratio=1,
-    random_sessions=False,
-    **kwargs
+    time_range,
+    train_ratio,
+    test_ratio,
+    random_sessions,
+    train_anomaly_ratio,
 ):
-    """Load HDFS structured log into train and test data
-
-    Arguments
-    ---------
-        TODO
-
-    Returns
-    -------
-        TODO
-    """
-    print("Loading HDFS logs from {}.".format(log_file))
+    print("Loading BGL logs from {}.".format(log_file))
     struct_log = pd.read_csv(log_file, engine="c", na_filter=False, memory_map=True)
-    # struct_log.sort_values(by=["Date", "Time"], inplace=True)
+    # struct_log.sort_values(by=["Timestamp"], inplace=True)
 
-    # assign labels
-    label_data = pd.read_csv(label_file, engine="c", na_filter=False, memory_map=True)
-    label_data["Label"] = label_data["Label"].map(lambda x: int(x == "Anomaly"))
-    label_data_dict = dict(zip(label_data["BlockId"], label_data["Label"]))
+    struct_log["Label"] = struct_log["Label"].map(lambda x: x != "-").astype(int).values
+    struct_log["time"] = pd.to_datetime(
+        struct_log["Time"], format="%Y-%m-%d-%H.%M.%S.%f"
+    )
+    struct_log["seconds_since"] = (
+        (struct_log["time"] - struct_log["time"][0]).dt.total_seconds().astype(int)
+    )
 
     session_dict = OrderedDict()
     column_idx = {col: idx for idx, col in enumerate(struct_log.columns)}
-    for _, row in enumerate(struct_log.values):
-        blkId_list = re.findall(r"(blk_-?\d+)", row[column_idx["Content"]])
-        blkId_set = set(blkId_list)
-        for blk_Id in blkId_set:
-            if blk_Id not in session_dict:
-                session_dict[blk_Id] = defaultdict(list)
-            session_dict[blk_Id]["templates"].append(row[column_idx["EventTemplate"]])
+    for idx, row in enumerate(struct_log.values):
+        current = row[column_idx["seconds_since"]]
+        if idx == 0:
+            sessid = current
+        elif current - sessid > time_range:
+            sessid = current
+        if sessid not in session_dict:
+            session_dict[sessid] = defaultdict(list)
+        session_dict[sessid]["templates"].append(row[column_idx["EventTemplate"]])
+        session_dict[sessid]["label"].append(
+            row[column_idx["Label"]]
+        )  # labeling for each log
 
-    for k in session_dict.keys():
-        session_dict[k]["label"] = label_data_dict[k]
+    # labeling for each session
+    # for k, v in session_dict.items():
+    #     session_dict[k]["label"] = [int(1 in v["label"])]
 
     session_idx = list(range(len(session_dict)))
     # split data
@@ -83,9 +78,10 @@ def preprocess_hdfs(
         np.random.shuffle(session_idx)
 
     session_ids = np.array(list(session_dict.keys()))
-    session_labels = np.array(list(map(lambda x: label_data_dict[x], session_ids)))
 
-    train_lines = int((1 - test_ratio) * len(session_idx))
+    if train_ratio is None:
+        train_ratio = 1 - test_ratio
+    train_lines = int(train_ratio * len(session_idx))
     test_lines = int(test_ratio * len(session_idx))
 
     session_idx_train = session_idx[0:train_lines]
@@ -93,22 +89,23 @@ def preprocess_hdfs(
 
     session_id_train = session_ids[session_idx_train]
     session_id_test = session_ids[session_idx_test]
-    session_labels_train = session_labels[session_idx_train]
-    session_labels_test = session_labels[session_idx_test]
 
     print("Total # sessions: {}".format(len(session_ids)))
 
     session_train = {
         k: session_dict[k]
         for k in session_id_train
-        if (session_dict[k]["label"] == 0)
-        or (session_dict[k]["label"] == 1 and decision(train_anomaly_ratio))
+        if (sum(session_dict[k]["label"]) == 0)
+        or (sum(session_dict[k]["label"]) > 0 and decision(train_anomaly_ratio))
     }
-
     session_test = {k: session_dict[k] for k in session_id_test}
 
-    session_labels_train = [v["label"] for k, v in session_train.items()]
-    session_labels_test = [v["label"] for k, v in session_test.items()]
+    session_labels_train = [
+        1 if sum(v["label"]) > 0 else 0 for _, v in session_train.items()
+    ]
+    session_labels_test = [
+        1 if sum(v["label"]) > 0 else 0 for _, v in session_test.items()
+    ]
 
     train_anomaly = 100 * sum(session_labels_train) / len(session_labels_train)
     test_anomaly = 100 * sum(session_labels_test) / len(session_labels_test)
@@ -121,9 +118,9 @@ def preprocess_hdfs(
     with open(os.path.join(data_dir, "session_test.pkl"), "wb") as fw:
         pickle.dump(session_test, fw)
     json_pretty_dump(params, os.path.join(data_dir, "data_desc.json"))
-
     print("Saved to {}".format(data_dir))
     return session_train, session_test
 
+
 if __name__ == "__main__":
-    preprocess_hdfs(**params)
+    load_BGL(**params)

@@ -2,12 +2,17 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import pandas as pd
 sys.path.append('../loglizer/')
 from loglizer.models import SVM
 from loglizer import preprocessing
 from loglizer.dataloader import BGL
+import warnings
 
-struct_log = 'data/BGL_2k/BGL_2k.log_structured.csv' # The structured log file
+warnings.simplefilter(action='ignore', category=pd.errors.PerformanceWarning)
+
+
+struct_log = 'data/BGL/BGL.log_structured.csv' # The structured log file
 
 if __name__ == '__main__':
     # TODO: Double check data loading parameters from paper
