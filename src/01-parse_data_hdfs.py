@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 
 import sys
-sys.path.append('../../')
 from logparser.Drain import LogParser
 
-input_dir  = 'data/HDFS_v1/' # The input directory of log file
-output_dir = 'data/HDFS_v1'  # The output directory of parsing results
-log_file   = 'HDFS.log'  # The input log file name
+# input_dir  = 'data/HDFS_v1/' # The input directory of log file
+# output_dir = 'data/HDFS_v1'  # The output directory of parsing results
+# log_file   = 'HDFS.log'  # The input log file name
+input_dir  = 'data/HDFS_2k/' # The input directory of log file
+output_dir = 'data/HDFS_2k'  # The output directory of parsing results
+log_file   = 'HDFS_2k.log'  # The input log file name
+
 log_format = '<Date> <Time> <Pid> <Level> <Component>: <Content>'  # HDFS log format
 # Regular expression list for optional preprocessing (default: [])
 regex      = [
