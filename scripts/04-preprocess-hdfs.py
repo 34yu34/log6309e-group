@@ -27,7 +27,7 @@ data_dir = "data/HDFS_v1/"
 
 params = {
     "log_file": "data/HDFS_v1/HDFS.log_structured.csv",
-    "label_file": "data/HDFS_v1/anomaly_label.csv",
+    "label_file": "data/HDFS_v1/preprocessed/anomaly_label.csv",
     "test_ratio": 0.2,
     "random_sessions": True,  # shuffle sessions
     "train_anomaly_ratio": params["train_anomaly_ratio"],
