@@ -11,12 +11,12 @@ def metrics(y_pred, y_true):
 
 
 
-seq_level_data = np.load('./data/BGL/agg/BGL_fasttext_template_tfidf_50d_agg.npz', allow_pickle=True)
-
-x_train = seq_level_data["x_train"]
-y_train = seq_level_data["y_train"]
-x_test = seq_level_data["x_test"]
-y_test = seq_level_data["y_test"]
+# seq_level_data = np.load('./data/BGL/agg/BGL_fasttext_template_tfidf_50d_agg.npz', allow_pickle=True)
+#
+# x_train = seq_level_data["x_train"]
+# y_train = seq_level_data["y_train"]
+# x_test = seq_level_data["x_test"]
+# y_test = seq_level_data["y_test"]
 
 ##############################
 #  Logistic Regression
@@ -151,6 +151,8 @@ print('average: ', sum(prec_l) / len(prec_l), sum(recall_l) / len(recall_l), sum
 
 from sklearn import svm
 from sklearn.metrics import precision_recall_fscore_support
+
+
 
 prec_l = []
 recall_l = []
