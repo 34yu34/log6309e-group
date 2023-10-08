@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from torch.autograd import Variable
 from sklearn.metrics import precision_recall_fscore_support
 
-seq_level_data = np.load('./data/BGL/agg/BGL_fasttext_template_tfidf_50d_agg.npz', allow_pickle=True)
+seq_level_data = np.load('../../data/BGL/TEXT_TFIDF_template_BGL.log.structured.npz', allow_pickle=True)
 
 x_train = seq_level_data["x_train"]
 y_train = seq_level_data["y_train"]

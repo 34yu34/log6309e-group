@@ -8,7 +8,6 @@ def aggregate(input_file_name, output_file_name):
     # aggregate log event-level representation to sequence-level
 
     df = pd.read_csv(input_file_name + '.csv')
-    evt_level_rep = pd.DataFrame.to_numpy(df)
 
 
     df['Time'] = pd.to_datetime(df['Time'], format="%Y-%m-%d-%H.%M.%S.%f")
@@ -45,5 +44,3 @@ def aggregate(input_file_name, output_file_name):
              y_train=y_train,
              x_test=x_test_agg,
              y_test=y_test)
-aggregate('../../data/BGL_2k/BGL_2k.log_structured', '../../data/BGL_2k/BGL_2k.agg')
-# aggregate('../../data/BGL/BGL.log_structured', '../../data/BGL/BGL.agg')
