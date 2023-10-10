@@ -2,18 +2,19 @@ import csv
 from typing import List
 
 import numpy as np
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 
-def convert_to_pyz(input_file, output_file):
-    data, labels = process(input_file)
+def convert_bgl_to_pyz(input_file: str, output_file: str):
+    data, labels = process_bgl(input_file)
     train_x, train_y, test_x, test_y = format_sets(data, labels)
     save_sets(output_file, train_x, train_y, test_x, test_y)
     print("Done 🎉")
 
 
-def process(input_file):
+def process_bgl(input_file: str):
     data = {}
     group_count = 0
     labels = {}
@@ -57,12 +58,46 @@ def process(input_file):
                 log_data[field] = row[columns.index(field)]
             group_data.append(log_data)
 
-
     return data, labels
 
 
-def format_sets(data, labels):
-    train, test = train_test_split(list(data.keys()), test_size=0.2)
+def convert_hdfs_to_splitted_pyz(log_csv_input_file: str, anomaly_labels_input_file: str, output_file: str):
+    data, labels = extract_groups_and_labels_from_hdfs(log_csv_input_file, anomaly_labels_input_file)
+    train_x, train_y, test_x, test_y = format_sets(data, labels, test_size=0.3)
+    save_sets(output_file, train_x, train_y, test_x, test_y)
+    print("Done 🎉")
+
+
+def extract_groups_and_labels_from_hdfs(log_csv_input_file: str, anomaly_labels_input_file: str) -> (dict, dict):
+    df = pd.read_csv(log_csv_input_file)
+    anomaly_df = pd.read_csv(anomaly_labels_input_file)
+
+    anomaly_df['IsAnomaly'] = anomaly_df['Label'].apply(lambda x: x == 'Anomaly')
+
+    def select_block_id(l: List) -> str:
+        selected_items = [item for item in l if item.startswith('blk_')]
+        return selected_items[0] if len(selected_items) > 0 else np.NaN
+
+    df['BlockId'] = df["ParameterList"].apply(lambda x: select_block_id(eval(x)))
+
+    df['IsAnomaly'] = df['BlockId'].apply(lambda x: anomaly_df.loc[anomaly_df['BlockId'] == x, 'IsAnomaly'].any())
+
+    g = df.groupby("BlockId")
+
+    groups = {}
+    labels = {}
+    for group in tqdm(g.groups):
+        groupdf = g.get_group(group)
+        groups[group] = groupdf.drop(columns=['IsAnomaly']).to_dict('records')
+        labels[group] = groupdf['IsAnomaly'].any()
+
+    print('====== Grouping summary ======')
+    print("Total number of sessions: {}".format(len(groups)))
+    return groups, labels
+
+
+def format_sets(data: dict, labels: dict, test_size=0.2):
+    train, test = train_test_split(list(data.keys()), test_size=test_size)
 
     train_x = {}
     test_x = {}
@@ -75,6 +110,10 @@ def format_sets(data, labels):
     for key in test:
         test_x[key] = data[key]
         test_y.append(labels[key])
+
+    print('====== Splitting summary ======')
+    print("Total number of test sessions: {}".format(len(test_x)))
+    print("Total number of train sessions: {}".format(len(train_x)))
 
     return train_x, train_y, test_x, test_y
 

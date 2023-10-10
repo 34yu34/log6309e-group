@@ -9,9 +9,8 @@ def aggregate(input_file_name, output_file_name):
 
     df = pd.read_csv(input_file_name + '.csv')
 
-
     df['Time'] = pd.to_datetime(df['Time'], format="%Y-%m-%d-%H.%M.%S.%f")
-    g = df.groupby(pd.Grouper(key='Time', freq='6H'))    # x_train = train.to_dict('index')
+    g = df.groupby(pd.Grouper(key='Time', freq='6H'))
 
     train, test = train_test_split(g.count(), test_size=0.2)
 
