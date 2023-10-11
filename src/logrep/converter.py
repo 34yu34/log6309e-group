@@ -69,18 +69,24 @@ def convert_hdfs_to_splitted_pyz(log_csv_input_file: str, anomaly_labels_input_f
 
 
 def extract_groups_and_labels_from_hdfs(log_csv_input_file: str, anomaly_labels_input_file: str) -> (dict, dict):
+    tqdm.pandas()
+    print("Reading CSV file: {}".format(log_csv_input_file))
     df = pd.read_csv(log_csv_input_file)
+    print("Reading CSV file: {}".format(anomaly_labels_input_file))
     anomaly_df = pd.read_csv(anomaly_labels_input_file)
 
+    print("Processing data...")
     anomaly_df['IsAnomaly'] = anomaly_df['Label'].apply(lambda x: x == 'Anomaly')
 
     def select_block_id(l: List) -> str:
         selected_items = [item for item in l if item.startswith('blk_')]
         return selected_items[0] if len(selected_items) > 0 else np.NaN
 
-    df['BlockId'] = df["ParameterList"].apply(lambda x: select_block_id(eval(x)))
+    print("Extracting 'BlockId' from 'ParameterList'")
+    df['BlockId'] = df["ParameterList"].progress_apply(lambda x: select_block_id(eval(x)))
 
-    df['IsAnomaly'] = df['BlockId'].apply(lambda x: anomaly_df.loc[anomaly_df['BlockId'] == x, 'IsAnomaly'].any())
+    print("Extracting 'IsAnomaly' from the anomaly dataframe")
+    df['IsAnomaly'] = df['BlockId'].progress_apply(lambda x: anomaly_df.loc[anomaly_df['BlockId'] == x, 'IsAnomaly'].any())
 
     g = df.groupby("BlockId")
 
