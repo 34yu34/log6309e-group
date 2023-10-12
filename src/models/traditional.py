@@ -80,8 +80,9 @@ class SVM(object):
             prec_l.append(precision)
             recall_l.append(recall)
             f1_l.append(f1)
-
+        precision, recall, f1 = sum(prec_l) / len(prec_l), sum(recall_l) / len(recall_l), sum(f1_l) / len(f1_l)
         print('average: ', sum(prec_l) / len(prec_l), sum(recall_l) / len(recall_l), sum(f1_l) / len(f1_l))
+        return precision, recall, f1
 
 
 class LR(object):
