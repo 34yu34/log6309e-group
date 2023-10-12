@@ -61,45 +61,41 @@ def process_bgl(input_file: str):
     return data, labels
 
 
-def convert_hdfs_to_splitted_pyz(log_csv_input_file: str, anomaly_labels_input_file: str, output_file: str):
-    data, labels = extract_groups_and_labels_from_hdfs(log_csv_input_file, anomaly_labels_input_file)
+def convert_hdfs_to_splitted_pyz(preprocessed_pickle_file_path: str,
+                                 output_file: str,
+                                 preprocessed_log_templates_file_path='../data/HDFS/preprocessed/HDFS.log_templates.csv'
+                                 ):
+    data, labels = extract_groups_and_labels_from_hdfs(preprocessed_pickle_file_path,
+                                                       preprocessed_log_templates_file_path)
     train_x, train_y, test_x, test_y = format_sets(data, labels, test_size=0.3)
     save_sets(output_file, train_x, train_y, test_x, test_y)
     print("Done 🎉")
 
 
-def extract_groups_and_labels_from_hdfs(log_csv_input_file: str, anomaly_labels_input_file: str) -> (dict, dict):
-    tqdm.pandas()
-    print("Reading CSV file: {}".format(log_csv_input_file))
-    df = pd.read_csv(log_csv_input_file)
-    print("Reading CSV file: {}".format(anomaly_labels_input_file))
-    anomaly_df = pd.read_csv(anomaly_labels_input_file)
+def extract_groups_and_labels_from_hdfs(preprocessed_pickle_file_path: str,
+                                        preprocessed_log_templates_file_path: str) -> (dict, dict):
+    npz = np.load(preprocessed_pickle_file_path, allow_pickle=True)
+    labels = dict(enumerate(npz['y_data'].flatten(), 1))
+    groups = dict(enumerate(npz['x_data'].flatten(), 1))
 
-    print("Processing data...")
-    anomaly_df['IsAnomaly'] = anomaly_df['Label'].apply(lambda x: x == 'Anomaly')
+    logsdf = pd.read_csv(preprocessed_log_templates_file_path)
 
-    def select_block_id(l: List) -> str:
-        selected_items = [item for item in l if item.startswith('blk_')]
-        return selected_items[0] if len(selected_items) > 0 else np.NaN
+    groups_with_event_template = {}
 
-    print("Extracting 'BlockId' from 'ParameterList'")
-    df['BlockId'] = df["ParameterList"].progress_apply(lambda x: select_block_id(eval(x)))
-
-    print("Extracting 'IsAnomaly' from the anomaly dataframe")
-    df['IsAnomaly'] = df['BlockId'].progress_apply(lambda x: anomaly_df.loc[anomaly_df['BlockId'] == x, 'IsAnomaly'].any())
-
-    g = df.groupby("BlockId")
-
-    groups = {}
-    labels = {}
-    for group in tqdm(g.groups):
-        groupdf = g.get_group(group)
-        groups[group] = groupdf.drop(columns=['IsAnomaly']).to_dict('records')
-        labels[group] = groupdf['IsAnomaly'].any()
+    print("Adding 'EventTemplate' on events in groups")
+    for group_id in tqdm(groups):
+        gs = []
+        for event_id in groups[group_id]:
+            event = {
+                'EventId': event_id,
+                'EventTemplate': logsdf[logsdf['EventId'] == event_id]['EventTemplate']
+            }
+            gs.append(event)
+        groups_with_event_template[group_id] = gs
 
     print('====== Grouping summary ======')
-    print("Total number of sessions: {}".format(len(groups)))
-    return groups, labels
+    print("Total number of sessions: {}".format(npz['x_data'].size))
+    return groups_with_event_template, labels
 
 
 def format_sets(data: dict, labels: dict, test_size=0.2):
@@ -129,6 +125,7 @@ def save_sets(output_file: str,
               train_y: List,
               test_x: dict,
               test_y: List):
+    print("Saving to file: {}".format(output_file))
     np.savez(output_file,
              x_train=np.array(train_x),
              y_train=np.array(train_y),
