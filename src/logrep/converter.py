@@ -87,8 +87,8 @@ def extract_groups_and_labels_from_hdfs(preprocessed_pickle_file_path: str,
         gs = []
         for event_id in groups[group_id]:
             event = {
-                'EventId': event_id,
-                'EventTemplate': logsdf[logsdf['EventId'] == event_id]['EventTemplate']
+                'EventId': str(event_id),
+                'EventTemplate': logsdf[logsdf['EventId'] == event_id]['EventTemplate'].to_list()[0]
             }
             gs.append(event)
         groups_with_event_template[group_id] = gs
