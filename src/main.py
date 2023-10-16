@@ -31,7 +31,7 @@ models = [lr_model_eval, decision_tree_model_eval, SVM_model_eval]
 data = [[]] * len(models)
 
 for i in range(100):
-    train_x, train_y, test_x, test_y = split_bgl(should_split_test_set=False)
+    train_x, train_y, test_x, test_y = split_bgl()
     model_data = ModelData(train_x, train_y, test_x, test_y)
 
     for i in range(len(models)):
@@ -40,5 +40,5 @@ for i in range(100):
 
 
 plt.boxplot(data, patch_artist=True, labels=labels)
-
+plt.title("F1 score of 100 fitting with the BGL dataset")
 plt.show()
