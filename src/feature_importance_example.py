@@ -15,3 +15,15 @@ ax.set_title("Feature importances using permutation on full model")
 ax.set_ylabel("Mean accuracy decrease")
 fig.tight_layout()
 plt.show()
+
+
+import pandas as pd
+
+feature_names = rf[:-1].get_feature_names_out()
+
+mdi_importances = pd.Series(
+    rf[-1].feature_importances_, index=feature_names
+).sort_values(ascending=True)
+ax = mdi_importances.plot.barh()
+ax.set_title("Random Forest Feature Importances (MDI)")
+ax.figure.tight_layout()
