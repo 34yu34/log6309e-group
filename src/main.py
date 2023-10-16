@@ -23,22 +23,23 @@ def SVM_model_eval(x_train, y_train, x_test, y_test):
     svm = SVM(train_x, train_y, test_x, test_y)
     return svm.evaluate()
 
-k_fold = 10
+n_iter = 100
 
 labels = ['LR', 'Tree', 'SVM']
-models = [lr_model_eval, decision_tree_model_eval, SVM_model_eval]
+models = [lr_model_eval,decision_tree_model_eval, SVM_model_eval]
 
-data = [[]] * len(models)
+data = [[] for i in range(len(models))]
 
-for i in range(100):
-    train_x, train_y, test_x, test_y = split_bgl()
-    model_data = ModelData(train_x, train_y, test_x, test_y)
+for i in range(n_iter):
+    train_x, train_y, test_x, test_y = split_bgl(
+        '../data/BGL/BGL_2k.log_structured.csv')
+    # model_data = ModelData(train_x, train_y, test_x, test_y)
 
     for i in range(len(models)):
         metric = models[i](train_x, train_y, test_x, test_y)
         data[i].append(metric[2])
 
-
 plt.boxplot(data, patch_artist=True, labels=labels)
-plt.title("F1 score of 100 fitting with the BGL dataset")
+
+plt.title(f"F1 score of {n_iter} fitting with the BGL dataset")
 plt.show()
