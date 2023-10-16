@@ -1,0 +1,624 @@
+(402542, 74)
+(402542,)
+positive: 11802
+ratio: 34.1079478054567
+Net(
+  (hidden1): Linear(in_features=74, out_features=200, bias=True)
+  (hidden2): Linear(in_features=200, out_features=200, bias=True)
+  (output): Linear(in_features=200, out_features=2, bias=True)
+)
+itr: 0, loss: 0.728545
+Testset: Precision: 0.029, recall: 1.000, F1-measure: 0.057, acc:0.029
+
+itr: 10, loss: 0.756520
+Testset: Precision: 0.029, recall: 1.000, F1-measure: 0.057, acc:0.029
+
+itr: 20, loss: 0.697536
+Testset: Precision: 0.000, recall: 0.000, F1-measure: 0.000, acc:0.971
+
+itr: 30, loss: 0.693835
+Testset: Precision: 0.000, recall: 0.000, F1-measure: 0.000, acc:0.971
+
+itr: 40, loss: 0.692013
+Testset: Precision: 0.029, recall: 1.000, F1-measure: 0.057, acc:0.029
+
+itr: 50, loss: 0.691138
+Testset: Precision: 0.029, recall: 1.000, F1-measure: 0.057, acc:0.029
+
+itr: 60, loss: 0.688970
+Testset: Precision: 0.946, recall: 0.394, F1-measure: 0.556, acc:0.982
+
+itr: 70, loss: 0.685154
+Testset: Precision: 1.000, recall: 0.379, F1-measure: 0.550, acc:0.982
+
+itr: 80, loss: 0.676217
+Testset: Precision: 0.946, recall: 0.394, F1-measure: 0.556, acc:0.982
+
+itr: 90, loss: 0.655067
+Testset: Precision: 0.944, recall: 0.382, F1-measure: 0.544, acc:0.981
+
+itr: 100, loss: 0.605344
+Testset: Precision: 0.922, recall: 0.396, F1-measure: 0.554, acc:0.981
+
+itr: 110, loss: 0.505712
+Testset: Precision: 0.835, recall: 0.510, F1-measure: 0.633, acc:0.983
+
+itr: 120, loss: 0.354752
+Testset: Precision: 0.879, recall: 0.899, F1-measure: 0.889, acc:0.993
+
+itr: 130, loss: 0.190749
+Testset: Precision: 0.886, recall: 0.949, F1-measure: 0.917, acc:0.995
+
+itr: 140, loss: 0.089640
+Testset: Precision: 0.890, recall: 0.991, F1-measure: 0.937, acc:0.996
+
+itr: 150, loss: 0.045908
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 160, loss: 0.029276
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 170, loss: 0.022557
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 180, loss: 0.019383
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 190, loss: 0.017621
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 200, loss: 0.016508
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 210, loss: 0.015735
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 220, loss: 0.015159
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 230, loss: 0.014710
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 240, loss: 0.014346
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 250, loss: 0.014042
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 260, loss: 0.013783
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 270, loss: 0.013555
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 280, loss: 0.013350
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 290, loss: 0.013159
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 300, loss: 0.012976
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 310, loss: 0.012794
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 320, loss: 0.012604
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 330, loss: 0.012394
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 340, loss: 0.012151
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 350, loss: 0.011848
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 360, loss: 0.011452
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 370, loss: 0.010913
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 380, loss: 0.010188
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 390, loss: 0.009294
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 400, loss: 0.008454
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 410, loss: 0.007951
+Testset: Precision: 0.891, recall: 1.000, F1-measure: 0.942, acc:0.996
+
+itr: 420, loss: 0.007687
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 430, loss: 0.007487
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 440, loss: 0.007304
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 450, loss: 0.007140
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 460, loss: 0.006997
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 470, loss: 0.006868
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 480, loss: 0.006752
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 490, loss: 0.006647
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 500, loss: 0.006551
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 510, loss: 0.006463
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 520, loss: 0.006382
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 530, loss: 0.006307
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 540, loss: 0.006237
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 550, loss: 0.006172
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 560, loss: 0.006112
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 570, loss: 0.006055
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 580, loss: 0.006003
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 590, loss: 0.005954
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 600, loss: 0.005908
+Testset: Precision: 0.951, recall: 1.000, F1-measure: 0.975, acc:0.998
+
+itr: 610, loss: 0.005865
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 620, loss: 0.005826
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 630, loss: 0.005789
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 640, loss: 0.005755
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 650, loss: 0.005723
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 660, loss: 0.005694
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 670, loss: 0.005667
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 680, loss: 0.005641
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 690, loss: 0.005618
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 700, loss: 0.005596
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 710, loss: 0.005575
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 720, loss: 0.005556
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 730, loss: 0.005537
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 740, loss: 0.005520
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 750, loss: 0.005504
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 760, loss: 0.005488
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 770, loss: 0.005474
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 780, loss: 0.005460
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 790, loss: 0.005446
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 800, loss: 0.005433
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 810, loss: 0.005421
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 820, loss: 0.005409
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 830, loss: 0.005397
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 840, loss: 0.005386
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 850, loss: 0.005375
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 860, loss: 0.005364
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 870, loss: 0.005354
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 880, loss: 0.005344
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 890, loss: 0.005334
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 900, loss: 0.005324
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 910, loss: 0.005315
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 920, loss: 0.005305
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 930, loss: 0.005296
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 940, loss: 0.005286
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 950, loss: 0.005277
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 960, loss: 0.005268
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 970, loss: 0.005259
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 980, loss: 0.005250
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 990, loss: 0.005241
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1000, loss: 0.005232
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1010, loss: 0.005223
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1020, loss: 0.005214
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1030, loss: 0.005204
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1040, loss: 0.005195
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1050, loss: 0.005186
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1060, loss: 0.005176
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1070, loss: 0.005167
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1080, loss: 0.005157
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1090, loss: 0.005147
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1100, loss: 0.005137
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1110, loss: 0.005127
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1120, loss: 0.005117
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1130, loss: 0.005106
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1140, loss: 0.005095
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1150, loss: 0.005084
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1160, loss: 0.005073
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1170, loss: 0.005061
+Testset: Precision: 0.951, recall: 0.999, F1-measure: 0.974, acc:0.998
+
+itr: 1180, loss: 0.005049
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1190, loss: 0.005036
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1200, loss: 0.005023
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1210, loss: 0.005010
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1220, loss: 0.004996
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1230, loss: 0.004982
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1240, loss: 0.004967
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1250, loss: 0.004951
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1260, loss: 0.004935
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1270, loss: 0.004918
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1280, loss: 0.004900
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1290, loss: 0.004882
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1300, loss: 0.004863
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1310, loss: 0.004844
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1320, loss: 0.004824
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1330, loss: 0.004804
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1340, loss: 0.004783
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1350, loss: 0.004763
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1360, loss: 0.004744
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1370, loss: 0.004725
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1380, loss: 0.004707
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1390, loss: 0.004690
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1400, loss: 0.004674
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1410, loss: 0.004659
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1420, loss: 0.004645
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1430, loss: 0.004632
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1440, loss: 0.004619
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1450, loss: 0.004608
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1460, loss: 0.004596
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1470, loss: 0.004586
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1480, loss: 0.004575
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1490, loss: 0.004565
+Testset: Precision: 0.956, recall: 0.999, F1-measure: 0.977, acc:0.999
+
+itr: 1500, loss: 0.004555
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1510, loss: 0.004546
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1520, loss: 0.004536
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1530, loss: 0.004527
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1540, loss: 0.004517
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1550, loss: 0.004508
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1560, loss: 0.004499
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1570, loss: 0.004490
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1580, loss: 0.004481
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1590, loss: 0.004473
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1600, loss: 0.004464
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1610, loss: 0.004455
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1620, loss: 0.004447
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1630, loss: 0.004438
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1640, loss: 0.004430
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1650, loss: 0.004422
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1660, loss: 0.004413
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1670, loss: 0.004405
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1680, loss: 0.004397
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1690, loss: 0.004389
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1700, loss: 0.004381
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1710, loss: 0.004373
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1720, loss: 0.004365
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1730, loss: 0.004357
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1740, loss: 0.004349
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1750, loss: 0.004342
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1760, loss: 0.004334
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1770, loss: 0.004327
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1780, loss: 0.004319
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.977, acc:0.999
+
+itr: 1790, loss: 0.004311
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1800, loss: 0.004304
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1810, loss: 0.004297
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1820, loss: 0.004289
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1830, loss: 0.004282
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1840, loss: 0.004275
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1850, loss: 0.004268
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1860, loss: 0.004261
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1870, loss: 0.004253
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1880, loss: 0.004246
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1890, loss: 0.004239
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1900, loss: 0.004232
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1910, loss: 0.004226
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1920, loss: 0.004219
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1930, loss: 0.004212
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1940, loss: 0.004205
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1950, loss: 0.004198
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1960, loss: 0.004192
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1970, loss: 0.004185
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1980, loss: 0.004179
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+itr: 1990, loss: 0.004172
+Testset: Precision: 0.956, recall: 1.000, F1-measure: 0.978, acc:0.999
+
+DecisionTree
+====== Model summary ======
+====== Evaluation summary ======
+Precision: 0.996, recall: 0.998, F1-measure: 0.997
+
+LR
+====== Model summary ======
+====== Evaluation summary ======
+Precision: 0.957, recall: 0.969, F1-measure: 0.963
+
+SVM
+====== Model summary ======
+====== Evaluation summary ======
+Precision: 0.957, recall: 0.969, F1-measure: 0.963
+

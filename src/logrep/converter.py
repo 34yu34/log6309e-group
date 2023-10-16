@@ -76,6 +76,7 @@ def extract_groups_and_labels_from_hdfs(preprocessed_pickle_file_path: str,
                                         preprocessed_log_templates_file_path: str) -> (dict, dict):
     npz = np.load(preprocessed_pickle_file_path, allow_pickle=True)
     labels = dict(enumerate(npz['y_data'].flatten(), 1))
+    labels = {str(k):v for k,v in labels.items()}
     groups = dict(enumerate(npz['x_data'].flatten(), 1))
 
     logsdf = pd.read_csv(preprocessed_log_templates_file_path)
@@ -91,7 +92,7 @@ def extract_groups_and_labels_from_hdfs(preprocessed_pickle_file_path: str,
                 'EventTemplate': logsdf[logsdf['EventId'] == event_id]['EventTemplate'].to_list()[0]
             }
             gs.append(event)
-        groups_with_event_template[group_id] = gs
+        groups_with_event_template[str(group_id)] = gs
 
     print('====== Grouping summary ======')
     print("Total number of sessions: {}".format(npz['x_data'].size))
