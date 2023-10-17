@@ -29,9 +29,9 @@ class MLP_L1(object):
         seq_level_data = np.load(data_path, allow_pickle=True)
 
         x_train = seq_level_data["x_train_l1"]
-        y_train = seq_level_data["y_train_l1"]
+        y_train = seq_level_data["y_train_l1"].astype(int)
         x_test = seq_level_data["x_test_l1"]
-        self.y_test = seq_level_data["y_test_l1"]
+        self.y_test = seq_level_data["y_test_l1"].astype(int)
 
         # balance pos/neg samples
         x_train = np.array(x_train, dtype=np.float64)

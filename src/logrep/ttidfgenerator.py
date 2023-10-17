@@ -1,5 +1,6 @@
 import os
 
+import csv
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -71,6 +72,15 @@ def Text_TFIDF_Generator(x_train, x_test, texttype):
     vectorizer = TfidfVectorizer()
     vectorizer.fit(corp)
     batch_size = 1000
+
+    # get the vocabulary as a dictionary
+    vocabulary = vectorizer.vocabulary_
+
+    # write the vocabulary to a CSV file
+    with open('vocabulary.csv', mode='w') as file:
+        writer = csv.writer(file)
+        for key, value in vocabulary.items():
+            writer.writerow([key, value])
 
     len_train = len(x_train)
     n_bat = len_train / batch_size
