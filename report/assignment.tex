@@ -18,6 +18,7 @@
 \usepackage{fancybox}
 \usepackage{scalefnt}
 \usepackage[normalem]{ulem}
+\usepackage{import}
 %\pagestyle{plain}
 \pagenumbering{arabic}
 \pagestyle{empty}
@@ -29,7 +30,8 @@
 \makeatletter
 \renewcommand{\paragraph}[1]{\noindent\textsf{#1}.}
 
-\title{Our title}
+\title{Replication project of \\
+"On the Effectiveness of Log Representation for Log-based Anomaly Detection"}
 \author{Billy Bouchard, Alexis Brissard, Simon Chamorro, Nicolas Legros}
 
 \begin{document}
@@ -41,45 +43,13 @@ Be as concise as possible.
 \end{abstract}
 
 
-\section{Introduction}
-\label{sec:introduction}
+\import{pages/}{1.introduction.tex}
+\import{pages/}{2.approach.tex}
+\import{pages/}{3.results.tex}
+% \import{pages/}{6.comparison.tex}
+\import{pages/}{4.conclusion.tex}
+\import{pages/}{5.team-contribution.tex}
 
-Brief intro about problem and why this replication/extension is important.
-
-
-\section{Approach}
-\label{sec:approach}
-
-Explain how you replicated and extended the original paper's approach. A overview figure is preferred to guide your description of the approach. Also don't forget to discuss the characteristics of your data sets and how you prepare/preprocess them before starting your analysis (if any).
-You may discuss the difficulties you found and (in case of uncertainty) which decisions you had to take to make things work.
-
-Note: Describe your approach in a concise and unambiguous way: others should be able to repeat your experiments following your report.
-Justify your design decisions (e.g., the selection of the models, evaluation metrics, statistical analysis methods). 
-You can cite papers like this~\cite{he2016experience}. You can use a different citation format but do keep it consistent.
-
-
-\section{Results}
-\label{sec:results}
-
-Present the results of your replication and extension. Compare your results with that in the original paper. You are encouraged to organize your results through answering a few research questions (RQs). You can follow a similar presentation as the original paper. 
-
-Note: Do not simply present your results, but also explain your results and discuss their implications. If you cannot explain a result, then something is probably wrong. Highlight a few take-home messages that you want readers to learn from your results.
-
-
-%\section{Comparison of Results}
-%\label{sec:comparison-results}
-
-%Second most important section of a replication study, in which the results are compared to the original study's results to understand whether the original findings generalize to the new techniques or new data sets, and, if not, why? Go deeper than just "techniques and datasets are different'', i.e., why would that be the case, how do the characteristics of the techniques or the datasets impact the results?
-
-
-\section{Conclusion}
-\label{sec:conclusion}
-
-A conclusion is not a summary of the approach and/or results. Instead, you should focus on the implications of your results and the key take-home messages. You may also briefly discuss potential future directions inspired by your results.
-
-\section{Team Contribution}
-\label{sec:contribution}
-Explain the contribution by each team member.
 
 \balance
 \bibliographystyle{IEEEtran}
