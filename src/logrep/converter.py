@@ -18,7 +18,7 @@ def process_bgl(input_file: str):
     data = {}
     group_count = 0
     labels = {}
-    SIX_H = 66060
+    SIX_H = 6 * 60 * 60
     columns = None
 
     with open(input_file, 'r') as f:

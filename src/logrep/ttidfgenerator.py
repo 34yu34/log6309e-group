@@ -27,7 +27,22 @@ def generate(data_dir: str, log_name: str):
 
     np.savez(save_path, x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test)
     print("Done 🎉")
+    
 
+def generate_train_test(x_train, y_train, x_test, y_test):
+    x_train = x_train[()]
+    x_test = x_test[()]
+
+    train_anomaly = 100 * sum(y_train) / len(y_train)
+    test_anomaly = 100 * sum(y_test) / len(y_test)
+
+    print("# train sessions: {} ({:.2f}%)".format(len(x_train), train_anomaly))
+    print("# test sessions: {} ({:.2f}%)".format(len(x_test), test_anomaly))
+
+    ttype = 'template'
+    x_train, x_test = Text_TFIDF_Generator(x_train, x_test, ttype)
+
+    return x_train, x_test
 
 def getCorpus(x_data, method):
     if method == "content":

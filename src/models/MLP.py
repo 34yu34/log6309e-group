@@ -25,13 +25,9 @@ class Net(torch.nn.Module):
         return out
 
 class MLP(object):
-    def __init__(self, data_path='') -> None:
-        seq_level_data = np.load(data_path, allow_pickle=True)
+    def __init__(self, x_train, y_train, x_test, y_test) -> None:
 
-        x_train = seq_level_data["x_train"]
-        y_train = seq_level_data["y_train"]
-        x_test = seq_level_data["x_test"]
-        self.y_test = seq_level_data["y_test"]
+        self.y_test = y_test
 
         # balance pos/neg samples
         x_train = np.array(x_train, dtype=np.float64)
