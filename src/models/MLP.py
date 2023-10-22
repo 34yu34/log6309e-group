@@ -86,7 +86,7 @@ class MLP(object):
             loss.backward()
             self.optimizer.step()
             if t%10 == 0:
-                print('itr: %d, loss: %f'% (t,loss))
+                # print('itr: %d, loss: %f'% (t,loss))
                 out_ = self.net(self.x_test_tensor)
                 y_ = torch.argmax(out_, -1)
                 acc = (y_==torch.from_numpy(self.y_test)).sum()/y_.shape[0]
@@ -96,5 +96,5 @@ class MLP(object):
                 recall_list.append(recall)
                 f1_list.append(f1)
                 accuracy_list.append(acc)
-                print('Testset: Precision: {:.3f}, recall: {:.3f}, F1-measure: {:.3f}, acc:{:.3f}\n'.format(precision, recall, f1, acc))
+                # print('Testset: Precision: {:.3f}, recall: {:.3f}, F1-measure: {:.3f}, acc:{:.3f}\n'.format(precision, recall, f1, acc))
         return loss_list, precision_list, recall_list, f1_list, accuracy_list

@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 
 
 def split_bgl(input_file: str = '../data/BGL/BGL.log_structured.csv',
-              output_file_path: str = '../data/BGL/BGL-log.splitted.npz'):
+              output_file_path: str = '../data/BGL/BGL-log.splitted.npz', should_shuffle=True):
 
     df = pd.read_csv(input_file)
 
@@ -26,7 +26,7 @@ def split_bgl(input_file: str = '../data/BGL/BGL.log_structured.csv',
                                       values='count').fillna(0).drop(columns=[np.NaN])
 
 
-    train, test = train_test_split(event_count_vector, test_size=0.2)
+    train, test = train_test_split(event_count_vector, test_size=0.2, shuffle=should_shuffle)
 
     test_y = test.reset_index(level='IsAnomaly')['IsAnomaly'].to_numpy() * 1
     train_y = train.reset_index(level='IsAnomaly')['IsAnomaly'].to_numpy() * 1
