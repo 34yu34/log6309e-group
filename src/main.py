@@ -1,3 +1,4 @@
+import json
 from splitdatabgl import split_bgl   
 from models.traditional import SVM
 from models.traditional import DecisionTree
@@ -10,9 +11,11 @@ import numpy as np
 from functools import reduce
 
 
-csv_input_file = '../data/BGL/BGL_2k.log_structured.csv'
+csv_input_file = '../data/BGL/BGL.log_structured.csv'
 parsed_data_file = '../data/BGL/BGL-log.splitted.npz'
-csv_extension_1_path = '../data/extension1.csv'
+csv_extension_1_path = '../data/extension2.csv'
+json_res_path = '../data/results.json'
+
 
 def lr_model_eval(x_train, y_train, x_test, y_test):
     lr = LR(max_iter=100000)
@@ -35,7 +38,7 @@ def MLP_model_eval(x_train, y_train, x_test, y_test, data_path = parsed_data_fil
     print(f1_list)
     return (reduce(lambda x, y: x + y, precision_list) / len(precision_list), reduce(lambda x, y: x + y, recall_list) / len(recall_list), reduce(lambda x, y: x + y, f1_list) / len(f1_list))
 
-n_iter = 50
+n_iter = 10
 
 labels = ['LR', 'Tree', 'SVM', 'MLP']
 models = [lr_model_eval,decision_tree_model_eval, SVM_model_eval, MLP_model_eval]
@@ -63,8 +66,6 @@ def E1():
     means = np.mean(numpy_data, axis=1)
     var = np.var(numpy_data, axis=1)
 
-    print(means)
-
     for i in range(len(labels)):
         print(f"the {labels[i]} means is : {means[i]}")
         print(f"the {labels[i]} variance is : {var[i]}")
@@ -74,11 +75,35 @@ def E1():
     plt.show()
 
 
-
 def E1_load():
-    df = pd.read_csv(csv_extension_1_path)
 
-    print(df.rank(axis=0, method="average"))
+    f = open(json_res_path)
+    data_raw = json.load(f)
+    df = pd.json_normalize(data_raw['random'])
+
+    scores_f = [df['LR.f1'][0], df['Tree.f1'][0], df['SVM.f1'][0], df['MLP.f1'][0]]
+    scores_p = [df['LR.precision'][0], df['Tree.precision'][0], df['SVM.precision'][0], df['MLP.precision'][0]]
+    scores_r = [df['LR.recall'][0], df['Tree.recall'][0], df['SVM.recall'][0], df['MLP.recall'][0]]
+
+    f, (ax1, ax2, ax3) = plt.subplots(1, 3)
+
+    f.set_figheight(12)
+    f.set_figwidth(18)
+    f.suptitle('Different model scores over 20 fitting')
+
+    ax1.boxplot(scores_f, patch_artist=True, labels=labels)
+    ax1.set_title("F1 scores of each models")
+    ax2.boxplot(scores_p, patch_artist=True, labels=labels)
+    ax2.set_title("precision scores of each models")
+    ax3.boxplot(scores_r, patch_artist=True, labels=labels)
+    ax3.set_title("recall scores of each models")
+
+    plt.show()
+
+    df_data = pd.DataFrame(scores_f)
+    df_data.to_csv(csv_extension_1_path)
+
+
 
 def E4():
     d = train_models(1, models, False)
@@ -91,4 +116,4 @@ def E4():
         for d_line in d[i]:
             print(reduce(lambda x, y : x+y, d_line) / len(d_line))
 
-E1()
+E1_load()
