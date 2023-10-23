@@ -85,24 +85,44 @@ def E1_load():
     scores_p = [df['LR.precision'][0], df['Tree.precision'][0], df['SVM.precision'][0], df['MLP.precision'][0]]
     scores_r = [df['LR.recall'][0], df['Tree.recall'][0], df['SVM.recall'][0], df['MLP.recall'][0]]
 
-    f, (ax1, ax2, ax3) = plt.subplots(1, 3)
+    # f, (ax1, ax2, ax3) = plt.subplots(1, 3)
 
-    f.set_figheight(12)
-    f.set_figwidth(18)
-    f.suptitle('Different model scores over 20 fitting')
+    # f.set_figheight(12)
+    # f.set_figwidth(18)
+    # f.suptitle('Different model scores over 20 fitting')
 
-    ax1.boxplot(scores_f, patch_artist=True, labels=labels)
-    ax1.set_title("F1 scores of each models")
-    ax2.boxplot(scores_p, patch_artist=True, labels=labels)
-    ax2.set_title("precision scores of each models")
-    ax3.boxplot(scores_r, patch_artist=True, labels=labels)
-    ax3.set_title("recall scores of each models")
+    # ax1.boxplot(scores_f, patch_artist=True, labels=labels)
+    # ax1.set_title("F1 scores of each models")
+    # ax2.boxplot(scores_p, patch_artist=True, labels=labels)
+    # ax2.set_title("precision scores of each models")
+    # ax3.boxplot(scores_r, patch_artist=True, labels=labels)
+    # ax3.set_title("recall scores of each models")
 
+    plt.boxplot(scores_f, patch_artist=True, labels=labels)
+    plt.title("F1 scores of each models over 20 fitting")
     plt.show()
 
     df_data = pd.DataFrame(scores_f)
     df_data.to_csv(csv_extension_1_path)
 
+
+
+def E4_load():
+    f = open(json_res_path)
+    data_raw = json.load(f)
+    df = pd.json_normalize(data_raw['random'])
+    df2 = pd.json_normalize(data_raw['sequential'])
+
+    scores_f = np.array([df['LR.f1'][0], df['Tree.f1'][0], df['SVM.f1'][0], df['MLP.f1'][0]])
+    scores_p = np.array([df['LR.precision'][0], df['Tree.precision'][0], df['SVM.precision'][0], df['MLP.precision'][0]])
+    scores_r = np.array([df['LR.recall'][0], df['Tree.recall'][0], df['SVM.recall'][0], df['MLP.recall'][0]])
+    scores_f_2 = np.array([df2['LR.f1'][0], df2['Tree.f1'][0], df2['SVM.f1'][0], df2['MLP.f1'][0]])
+    scores_p_2 = np.array([df2['LR.precision'][0], df2['Tree.precision'][0], df2['SVM.precision'][0], df2['MLP.precision'][0]])
+    scores_r_2 = np.array([df2['LR.recall'][0], df2['Tree.recall'][0], df2['SVM.recall'][0], df2['MLP.recall'][0]])
+
+    print(f"average F1 random_based ({np.mean(scores_f, axis=1)}) vs time-based ({np.mean(scores_f_2, axis=1)}) with diff {np.mean(scores_f, axis=1)-np.mean(scores_f_2, axis=1)}")
+    print(f"average precision random_based ({np.mean(scores_p, axis=1)}) vs time-based ({np.mean(scores_p_2, axis=1)}) with diff {np.mean(scores_p, axis=1)-np.mean(scores_p_2, axis=1)}")
+    print(f"average recall random_based ({np.mean(scores_r, axis=1)}) vs time-based ({np.mean(scores_r_2, axis=1)}) with diff {np.mean(scores_r, axis=1)-np.mean(scores_r_2, axis=1)}")
 
 
 def E4():
@@ -116,4 +136,4 @@ def E4():
         for d_line in d[i]:
             print(reduce(lambda x, y : x+y, d_line) / len(d_line))
 
-E1_load()
+E4_load()

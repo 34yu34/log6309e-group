@@ -1,8 +1,8 @@
-library(ScottKnott) 
-data(CRD1) 
+library(ScottKnottESD)
 
-#From:formula 
 
-#Simple! 
+data1 <- read.csv("../data/extension2.csv")
 
-sk1<-SK(y~x, data=CRD1$dfm, which='x') boxplot(sk1)
+# Using Non-Parametric ScottKnott ESD test
+sk <- sk_esd(data1, version="np")
+plot(sk)
