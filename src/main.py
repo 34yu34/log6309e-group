@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from functools import reduce
-
+from metric_visualizer import MetricVisualizer
 
 csv_input_file = '../data/BGL/BGL.log_structured.csv'
 parsed_data_file = '../data/BGL/BGL-log.splitted.npz'
@@ -98,11 +98,16 @@ def E1_load():
     # ax3.boxplot(scores_r, patch_artist=True, labels=labels)
     # ax3.set_title("recall scores of each models")
 
+
+    MV = MetricVisualizer(name='example', trial_tag='Model')
+
+    MV.rank_test_by_metric()
+
     plt.boxplot(scores_f, patch_artist=True, labels=labels)
     plt.title("F1 scores of each models over 20 fitting")
     plt.show()
 
-    df_data = pd.DataFrame(scores_f)
+    df_data = pd.DataFrame(df[['LR.f1', 'Tree.f1', 'SVM.f1', 'MLP.f1']])
     df_data.to_csv(csv_extension_1_path)
 
 
